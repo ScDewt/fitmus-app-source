@@ -1,0 +1,44 @@
+[data-role='page'] {
+  background-size: cover!important;
+}
+[data-role='page'] > * {
+  opacity: 0.7;
+}
+#auth_page {
+  background: url(../img/bg/auth.png) 0 100% no-repeat;
+}
+#main_page {
+  background: url(../img/bg/main.png) 0 -27px no-repeat;
+}
+#exercise_page {
+  background: url(../img/bg/exercise_full.png) 0 100% no-repeat;
+}
+#comment_page {
+  background: url(../img/bg/comment.png) 0 100% no-repeat;
+}
+#note_page {
+  background: url(../img/bg/note.png) 0 100% no-repeat;
+}
+#settings_page {
+  background: url(../img/bg/settings.png) 0 100% no-repeat;
+}
+#select_exercise_page {
+  background: url(../img/bg/select_exercise.png) 0 100% no-repeat;
+}
+#select_muscle_page {
+  background: url(../img/bg/select_muscle.png) 0 100% no-repeat;
+}
+.fit-logo {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: 1px solid #fff;
+  color: #fff;
+  background: #111;
+  padding: 0.05em;
+  font-size: 1.5em;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 1;
+  margin-right: 0.1em;
+}
