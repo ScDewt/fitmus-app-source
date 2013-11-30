@@ -1,6 +1,17 @@
-#select_muscle_page(data-role='page', data-quicklinks='true')
-  div(data-role='header')
-    //&lt;
-    //div F
-    h1 Добавить упражнение
+#select_muscle_page.hide(data-role='page', data-quicklinks='true')
+  div(data-role='header', data-position="fixed")
+    h2
+      span.fit-logo F
+      | Добавить упражнение
+    a.ui-btn.ui-btn-no-border.ui-btn-left.less-left(href="#main_edit_page")
+      i.fit-icon-large.fit-icon-left-arrow
   div(data-role='content')
+    ul.hide-link(data-role="listview")
+      li
+        a(href="#select_exercise_page") Трапеция
+      li
+        a(href="#select_exercise_page") Грудь
+      li
+        a(href="#select_exercise_page") Плечи
+      li
+        a(href="#select_exercise_page") Бицепс

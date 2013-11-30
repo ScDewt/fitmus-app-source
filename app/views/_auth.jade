@@ -1,4 +1,16 @@
-#auth_page(data-role='page', data-quicklinks='true')
-  div(data-role='header')
+#auth_page.hide(data-role='page', data-quicklinks='true', data-theme="b")
   div(data-role='content')
-  div(data-role='footer')
+    h1 FITMUS
+    aside
+      | VERSION
+      | &nbsp;
+      em 2.0
+    input#login.ui-corner-none(type="text", data-clear-btn="true", name="text-3", placeholder="Логин", data-theme="a")
+    input#pass.ui-corner-none(type="password", data-clear-btn="true", name="text-3", placeholder="Пароль", data-theme="a")
+    a.ui-input-btn.ui-btn.ui-min(href="#main_page") Войти
+  div(data-role='footer', data-position="fixed")
+    ul
+      li
+        a(href="http://fitmus.com") О проекте
+      li
+        a(href="http://fitmus.com/auth/registration") Регистрация

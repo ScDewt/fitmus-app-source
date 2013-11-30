@@ -1,12 +1,18 @@
 extends layout
 
 block contents
+  .ui-loader.ui-corner-all.ui-body-a.ui-loader-default
+    span.ui-icon-loading
+    h1 loading
 
-  include _main
-  include _exercise
   include _auth
+  include _main
+  include _main_edit
+  include _exercise
   include _select_muscle
   include _select_exercise
   include _note
-  include _comment
   include _settings
+
+  include _comment
+  include _menu

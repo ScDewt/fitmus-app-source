@@ -1,4 +1,41 @@
-#select_exercise_page(data-role='page', data-quicklinks='true')
-  div(data-role='header')
+#select_exercise_page.hide(data-role='page', data-quicklinks='true')
+  div(data-role='header', data-position="fixed")
+    h2
+      span.fit-logo F
+      | Добавить упражнение
+    a.ui-btn.ui-btn-no-border.ui-btn-left.less-left(href="#select_muscle_page")
+      i.fit-icon-large.fit-icon-left-arrow
+
   div(data-role='content')
-  div(data-role='footer')
+    ul(data-role="listview")
+      li
+        img.exercise-img( src="/img/mans/man.png")
+        .li-content
+          h3.blue
+            | Сведение рук в тренажере с
+            | верхним кроссовером и
+            | небольшим наклоном вниз
+          p грудь
+        a.ui-btn.ui-btn-no-border.ui-btn-bottom-right(href="#main_edit_page")
+          i.fit-icon-big.fit-icon-add
+      li
+        img.exercise-img( src="/img/mans/man.png")
+        .li-content
+          h3.blue
+            | Сведение рук в тренажере с
+            | верхним кроссовером и
+            | небольшим наклоном вниз
+          p грудь
+        a.ui-btn.ui-btn-no-border.ui-btn-bottom-right(href="#main_edit_page")
+          i.fit-icon-big.fit-icon-add
+      li
+        img.exercise-img( src="/img/mans/man.png")
+        .li-content
+          h3.blue
+            | Сведение рук в тренажере с
+            | верхним кроссовером и
+            | небольшим наклоном вниз
+          p грудь
+        a.ui-btn.ui-btn-no-border.ui-btn-bottom-right(href="#main_edit_page")
+          i.fit-icon-big.fit-icon-add
+

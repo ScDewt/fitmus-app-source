@@ -19,6 +19,12 @@
 .fit-icon-large{
     font-size: 3em;
 }
+.fit-icon-big{
+    font-size: 2.5em;
+}
+.fit-icon-mid{
+    font-size: 2em;
+}
 
 .fit-icon-schedules:before {
     content: "a";
@@ -38,7 +44,7 @@
 .fit-icon-save:before {
     content: "f";
 }
-.fit-icon-setting:before {
+.fit-icon-settings:before {
     content: "g";
 }
 .fit-icon-exit:before {
@@ -46,6 +52,12 @@
 }
 .fit-icon-add:before {
     content: "i";
+}
+.fit-icon-up:before {
+    content: "j";
+}
+.fit-icon-down:before {
+    content: "k";
 }
 .fit-icon-refresh:before {
     content: "l";

@@ -1,12 +1,22 @@
-#main_menu
+#main_menu.hide(data-role="panel", data-position="left", data-display="overlay", data-theme="b")
   ul
     li
-      a расписание
+      a(href="#main_page")
+       i.fit-icon-schedules
+       | Расписание
     li
-      a записи
+      a(href="#")
+        i.fit-icon-edit
+        | Записи
     li
-      a синзронизацыя
+      a(href="#")
+        i.fit-icon-save
+        | Синзронизацыя
     li
-      a настройка
+      a(href="#settings_page")
+        i.fit-icon-settings
+        | Настройка
     li
-      a виход
+      a(href="#auth_page")
+        i.fit-icon-exit
+        | Виход

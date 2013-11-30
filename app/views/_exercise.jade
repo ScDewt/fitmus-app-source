@@ -1,4 +1,46 @@
-#exercise_page(data-role='page', data-quicklinks='true')
-  div(data-role='header')
+#exercise_page.hide(data-role='page', data-quicklinks='true')
+  div(data-role='header', data-position="fixed")
+    h2
+      span.fit-logo F
+      | Расписание
+    a.ui-btn.ui-btn-no-border.ui-btn-left.less-left(href="#main_page")
+      i.fit-icon-large.fit-icon-left-arrow
+    .btn-group-right
+      a.ui-btn.ui-btn-no-border(href="#cooment_popup", data-rel="popup", data-transition="pop")
+        i.fit-icon-large.fit-icon-comment
+    div(data-role="navbar")
+      ul
+        li
+          a(href="#") Упражнение
+        li
+          a(href="#") Мишца
   div(data-role='content')
-  div(data-role='footer')
+    ul(data-role="listview")
+      li
+        img.exercise-img( src="/img/mans/man.png")
+        .li-content
+          h3.red
+            | Сведение рук в тренажере с
+            | верхним кроссовером и
+            | небольшим наклоном вниз
+          p грудь
+      li
+        table
+          tr
+            td
+              | 1
+            td
+              input(type="text", value="10.88", data-additional-btn="true",data-additional-content="КГ")
+            td
+              | X
+            td
+              input(type="text", value="112", data-additional-btn="true",data-additional-content="РАЗ")
+          tr
+            td
+              a.ui-btn.ui-btn-no-border.ui-btn-short(href="#")
+                i.fit-icon-mid.fit-icon-remove
+            td
+              input(type="text", value="10.88", data-additional-btn="true", data-additional-content="Отдых<br><i class='ui-icon-clock'/>")
+            td
+            td
+              input(type="text", value="10.88", data-additional-btn="true", data-additional-content="Работа<br><i class='ui-icon-clock'/>")
