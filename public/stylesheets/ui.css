@@ -136,6 +136,7 @@ body.ui-overlay-a {
 }
 .ui-page .ui-header .ui-btn {
   color: #fff;
+  background: transparent;
 }
 .ui-page .ui-header .ui-btn-left {
   left: -1.2em;
@@ -156,6 +157,9 @@ body.ui-overlay-a {
   font-weight: normal;
   letter-spacing: -0.02em;
   color: #fff;
+}
+.ui-page .ui-header .ui-title .small {
+  font-size: .6em;
 }
 .ui-page .ui-header .btn-group-right {
   position: absolute;
@@ -203,6 +207,19 @@ body.ui-overlay-a {
 .ui-page .ui-header .ui-navbar .date-header p {
   margin: .2em 0 .4em;
   font-size: 0.7em;
+}
+.ui-page .ui-content.short {
+  padding: .2em .3em;
+  position: absolute;
+  top: 6.05em;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.ui-page .ui-content textarea {
+  resize: none;
+  margin: 0;
+  height: 100%!important;
 }
 .ui-page .ui-content .ui-listview {
   background: #fff;

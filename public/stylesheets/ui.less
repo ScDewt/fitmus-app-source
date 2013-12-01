@@ -146,6 +146,7 @@ body{
     }
     .ui-btn{
       color: #fff;
+      background: transparent;
     }
     .ui-btn-left{
       left: -1.2em;
@@ -166,6 +167,9 @@ body{
       font-weight: normal;
       letter-spacing: -0.02em;
       color: #fff;
+      .small{
+        font-size: .6em;
+      }
     }
     .btn-group-right {
       position: absolute;
@@ -216,6 +220,19 @@ body{
   }
 
   .ui-content{
+    &.short{
+      padding: .2em .3em;
+      position: absolute;
+      top: 6.05em;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+    textarea{
+      resize: none;
+      margin: 0;
+      height: 100%!important;
+    }
     .ui-listview{
       background: #fff;
       li{

@@ -3,11 +3,11 @@
 [data-role='page']{
   background-size: cover!important;
 }
-
-[data-role='page'] > * {
-//  opacity: 0.8;
-}
 /*
+[data-role='page'] > * {
+  opacity: 0.8;
+}
+
 #auth_page{
   background: url(../img/bg/auth.png) 0 -27px no-repeat;
 }
@@ -158,6 +158,66 @@
             text-decoration: underline;
           }
         }
+      }
+    }
+  }
+}
+
+#settings_page{
+  .ui-content{
+    padding: .5em;
+    color: #fff;
+    h3{
+      font-weight: normal;
+      text-transform: uppercase;
+      margin: 0.4em 0 0 0;
+      font-size: 1em;
+      border-bottom: 2px solid #fff;
+      padding: .1em;
+    }
+    h4 + h3{
+      margin-top: 1.5em;
+    }
+    h4{
+      font-weight: normal;
+      margin: 0;
+      font-size: 0.85em;
+      padding: 1.2em;
+      & + h4{
+        border-top: 1px solid #fff;
+      }
+      .ui-btn{
+        float: right;
+        margin: 0;
+        padding: 0.3em .6em;
+        font-weight: normal;
+        background: #E80000;
+        color: #fff;
+        border: 1px solid #212121;
+        line-height: 1.3;
+        font-size: 1em;
+        min-width: 1.5em;
+        position: relative;
+        top: -0.4em;
+        &:hover,
+        &:active{
+          background: #FF0000;
+          color: #fff;
+        }
+      }
+      .ui-checkbox{
+        float: right;
+        input{
+          position: static;
+        }
+      }
+      a{
+        color: inherit;
+        text-decoration: none;
+        font-size: 1em;
+        font-weight: normal;
+        margin: -.7em;
+        padding: .7em;
       }
     }
   }

@@ -1,4 +1,27 @@
-#settings_page.hide(data-role='page', data-quicklinks='true')
-  div(data-role='header')
+#settings_page.hide(data-role='page', data-quicklinks='true', data-theme="b")
+  div(data-role='header', data-position="fixed")
+    h2
+      span.fit-logo F
+      | Настройки
+    a.main_menu-link.ui-btn.ui-btn-no-border.ui-btn-left(href="#")
+      i.fit-icon-big.fit-icon-schedules
+    div(style="border-bottom: 1px solid #030303;" )
+
   div(data-role='content')
-  div(data-role='footer')
+    h3 Внешний вид
+    h4
+      | Отображать время
+      input(type="checkbox")
+    h4
+      | Единицы веса
+      .ui-btn КГ
+    h4
+      | Единицы расстояния
+      .ui-btn КМ
+    h3 Синхронизация
+    h4
+      | Автоматическая синхрозизацыя
+      input(type="checkbox")
+    h3 Аккаунт
+    h4
+      a(href="#auth_page") Вход под другим аккаунтом
