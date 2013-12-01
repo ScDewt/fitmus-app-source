@@ -24,5 +24,5 @@
         location.hash = "#auth_page";
     },0);
 
-    global.app = angular.module('myApp',[]);
+    global.app = angular.module('fitApp',[]);
 })(window);

@@ -1,13 +1,13 @@
-#auth_page.hide(data-role='page', data-quicklinks='true', data-theme="b")
+#auth_page.hide(data-role='page', data-quicklinks='true', data-theme="b", ng-controller='AuthCtrl')
   div(data-role='content')
     h1 FITMUS
     aside
       | VERSION
       | &nbsp;
       em 2.0
-    input#login.ui-corner-none(type="text", data-clear-btn="true", name="text-3", placeholder="Логин", data-theme="a")
-    input#pass.ui-corner-none(type="password", data-clear-btn="true", name="text-3", placeholder="Пароль", data-theme="a")
-    a.ui-input-btn.ui-btn.ui-min(href="#main_page") Войти
+    input#login.ui-corner-none(type="text", data-clear-btn="true", name="text-3", placeholder="Логин", data-theme="a", ng-model="user")
+    input#pass.ui-corner-none(type="password", data-clear-btn="true", name="text-3", placeholder="Пароль", data-theme="a", ng-model="pass")
+    a.ui-input-btn.ui-btn.ui-min(_href="#main_page", ng-click='login()') Войти
   div(data-role='footer', data-position="fixed")
     ul
       li

@@ -65,6 +65,7 @@
 #main_menu {
   top: 3.09em;
   bottom: 0;
+  min-height: 70%;
   background: #515151;
 }
 #main_menu .ui-panel-inner {
