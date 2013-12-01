@@ -30,17 +30,26 @@
             td
               | 1
             td
-              input(type="text", value="10.88", data-additional-btn="true",data-additional-content="КГ")
+              input(type="number", value="10.88", data-additional-btn="true",data-additional-btn-content="КГ")
             td
               | X
             td
-              input(type="text", value="112", data-additional-btn="true",data-additional-content="РАЗ")
+              input(type="number", value="112", data-additional-btn="true", data-additional-btn-class="grey", data-additional-btn-content="РАЗ")
           tr
             td
               a.ui-btn.ui-btn-no-border.ui-btn-short(href="#")
                 i.fit-icon-mid.fit-icon-remove
             td
-              input(type="text", value="10.88", data-additional-btn="true", data-additional-content="Отдых<br><i class='ui-icon-clock'/>")
+              input(type="number", value="10.88", data-additional-btn="true", data-additional-btn-class="two-line", data-additional-btn-content="Отдых<br><i class='ui-icon-clock-fix'/>")
             td
             td
-              input(type="text", value="10.88", data-additional-btn="true", data-additional-content="Работа<br><i class='ui-icon-clock'/>")
+              input(type="number", value="10.88", data-additional-btn="true", data-additional-btn-class="two-line purple",data-additional-btn-content="Работа<br><i class='ui-icon-clock-fix'/>")
+        dl.left
+          dd БЫЛО:
+          dt 95 x 8
+        dl.right
+          dd Отдых:
+          dt.lime 01:30
+          dd Работа:
+          dt.purple 00:12
+        .clearfix
