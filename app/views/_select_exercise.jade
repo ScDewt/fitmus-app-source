@@ -1,4 +1,4 @@
-#select_exercise_page.hide(data-role='page', data-quicklinks='true')
+#select_exercise_page.hide(data-role='page', data-quicklinks='true', ng-controller='SelectExerciseCtrl')
   div(data-role='header', data-position="fixed")
     h2
       span.fit-logo F
@@ -8,34 +8,10 @@
 
   div(data-role='content')
     ul(data-role="listview")
-      li
-        img.exercise-img( src="/img/mans/man.png")
+      li(ng-repeat="(id, exercise) in exercises | inRangeInt: musclegroup_exercises[muscle_id] ")
+        img.exercise-img( src="{{exercise.img}}")
         .li-content
-          h3.blue
-            | Сведение рук в тренажере с
-            | верхним кроссовером и
-            | небольшим наклоном вниз
-          p грудь
+          h3.blue {{exercise.name}}
+          p {{musclegroups[muscle_id]}}
         a.ui-btn.ui-btn-no-border.ui-btn-bottom-right(href="#main_edit_page")
           i.fit-icon-big.fit-icon-add
-      li
-        img.exercise-img( src="/img/mans/man.png")
-        .li-content
-          h3.blue
-            | Сведение рук в тренажере с
-            | верхним кроссовером и
-            | небольшим наклоном вниз
-          p грудь
-        a.ui-btn.ui-btn-no-border.ui-btn-bottom-right(href="#main_edit_page")
-          i.fit-icon-big.fit-icon-add
-      li
-        img.exercise-img( src="/img/mans/man.png")
-        .li-content
-          h3.blue
-            | Сведение рук в тренажере с
-            | верхним кроссовером и
-            | небольшим наклоном вниз
-          p грудь
-        a.ui-btn.ui-btn-no-border.ui-btn-bottom-right(href="#main_edit_page")
-          i.fit-icon-big.fit-icon-add
-

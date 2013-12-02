@@ -5,7 +5,7 @@
 function MuscleCtrl($scope, connect, navigation) {
     $scope.musclegroups = {};
 
-    navigation.beforePageShow("select_muscle_page",function(){
+    navigation.beforePageChange("select_muscle_page",function(){
         connect.getData(function(err, data){
             if(err){
                 alert(err.message);
@@ -13,7 +13,7 @@ function MuscleCtrl($scope, connect, navigation) {
             }
             $scope.musclegroups = data.musclegroup;
             $scope.$apply();
-            $('#select_muscle_page [data-role="listview" ]').listview("refresh");
+            $('#select_muscle_page [data-role="listview" ]').listview().listview("refresh");
         });
     });
 }
