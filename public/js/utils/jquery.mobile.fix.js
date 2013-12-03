@@ -22,6 +22,7 @@
 
         },
 
+
         _addAdditionalBtn: function() {
 
             if ( !this.options.enhanced ) {

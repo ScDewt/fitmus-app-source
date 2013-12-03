@@ -18,6 +18,16 @@
         $( "#cooment_popup" ).enhanceWithin().popup({
             align: "0.5,0.5"
         });
+//        $("input[type='date']").mobipick({
+//            locale: "ru",
+//            buttonTheme: "a",
+//            popup:{
+//                theme: "b"
+//            }
+//        }).parents(".ui-btn").on("click",function(){
+//            $(this).find("input[type='date']").click();
+//            return false;
+//        });
     });
 
     setTimeout(function(){
