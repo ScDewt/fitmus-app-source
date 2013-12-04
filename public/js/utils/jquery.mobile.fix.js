@@ -2,6 +2,7 @@
 
     $.widget( "mobile.textinput", $.mobile.textinput, {
         options: {
+            inputHide:false,
             additionalBtn: false,
             additionalBtnContent: "BTN",
             additionalBtnClass: "red",
@@ -14,6 +15,7 @@
             if ( !!this.options.additionalBtn ) {
                 this._addAdditionalBtn();
             }
+            this._setInputHide(this.options.inputHide);
         },
 
         additionalButton: function() {
@@ -22,6 +24,9 @@
 
         },
 
+        _setInputHide: function(state) {
+            this.widget().css("display",state?"none":"");
+        },
 
         _addAdditionalBtn: function() {
 
@@ -70,6 +75,7 @@
             if ( options.additionalBtnContent !== undefined && this._additionalBtn !== undefined ) {
                 this._additionalBtn.text( options.additionalBtnContent );
             }
+            this._setInputHide(this.options.inputHide);
         },
 
         _destroyAdditional: function() {
@@ -79,6 +85,7 @@
 
         _destroy: function() {
             this._super();
+            this._setInputHide(false);
             this._destroyAdditional();
         }
 

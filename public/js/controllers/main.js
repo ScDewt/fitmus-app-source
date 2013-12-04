@@ -6,13 +6,12 @@ function MainCtrl($scope, connect, navigation, sharedObject) {
     var now = new Date();
 
     //timestamp on Moscov time +4h
-    $scope.select_timestamp = getMoscovTimeStamp(now.getFullYear(),now.getMonth(),now.getDay());
     $scope.exercises = {};
     $scope.select_exercises = {};
     $scope.musclegroups = {};
     $scope.musclegroup_exercises = {};
-    $scope.glob = sharedObject.getObject();
-    $scope.glob.date = now.getFullYear()+"-"+now.getMonth()+"-"+(now.getDay()+1);
+    sharedObject.registerScope($scope);
+
 
     navigation.beforePageChange("main_page",function(){
 
@@ -28,21 +27,33 @@ function MainCtrl($scope, connect, navigation, sharedObject) {
             $scope.exercises = data.data.exercise;
             $scope.musclegroup_exercises = data.data.musclegroup_exercise;
             $scope.trains = data.train;
-            selectExercise($scope.select_timestamp);
             $scope.$apply();
-            $('#main_page [data-role="listview" ]').listview().listview("refresh");
+            selectExercise($scope.glob.select_timestamp);
         });
     });
 
-    $scope.$watch('select_timestamp', selectExercise);
+    $scope.$watch('glob.select_timestamp', selectExercise);
     $scope.$watch('glob.date', function(newDate){
-        console.log('glob.date',newDate);
+        //console.log('glob.date',newDate);
+        var aDate = newDate.split("-");
+        $scope.glob.select_timestamp = getMoscovTimeStamp(aDate[0],aDate[1]-1,aDate[2]-1)
+        console.log("$scope.glob.select_timestamp",$scope.glob.select_timestamp);
     });
+    $scope.glob.date = now.getFullYear()+"-"+(now.getMonth()+1)+"-"+(now.getDay()+1);
+    $scope.nextDay = function(){
+        $scope.glob.date = XDate($scope.glob.date).addDays(1).toString("yyyy-MM-dd");
+    };
+    $scope.prevDay = function(){
+        $scope.glob.date = XDate($scope.glob.date).addDays(-1).toString("yyyy-MM-dd");
+    };
 
     function selectExercise(timestamp, oldTimestamp) {
         if($scope.trains){
             $scope.select_trains = $scope.trains[timestamp] || [];
         }
+        setTimeout(function(){
+            $('#main_page [data-role="listview" ]').listview().listview("refresh");
+        },0)
     }
 
     function getMoscovTimeStamp(year,month,day){
