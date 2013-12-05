@@ -29,7 +29,9 @@ function AuthCtrl($scope, connect) {
                 }
                 $.mobile.loader("hide");
                 console.log(data);
-                location.hash = "main_page";
+                setTimeout(function(){
+                    location.hash = "main_page";
+                },0)
             });
         });
         return false;

@@ -2,7 +2,7 @@
 
 app.factory('navigation',function ($rootScope){
     var pagesListener = {};
-    $(document).bind( "pagebeforechange", function( e, data ) {
+    $(document).bind( "pagebeforechange", _.busy(function( e, data ) {
         var page = data.absUrl.split("#")[1].split("?")[0],
             strParams = data.absUrl.split("?")[1]||"",
             params = strParams.split("/");
@@ -12,7 +12,7 @@ app.factory('navigation',function ($rootScope){
                 listener.apply(window,params);
             });
         }
-    });
+    },100));
 
     return {
 //        beforePageShow: function(page, callback){

@@ -9,7 +9,7 @@
     .btn-group-right
       a.ui-btn.ui-btn-no-border(href="#cooment_popup", data-rel="popup", data-transition="pop")
         i.fit-icon-large.fit-icon-comment
-      a.ui-btn.ui-btn-no-border(href="#main_edit_page")
+      a.ui-btn.ui-btn-no-border(href="#",ng-click="toggleState()", ng-class="edit_mode?'ui-btn-active':''")
         i.fit-icon-large.fit-icon-pencil
       a.ui-btn.ui-btn-no-border(href="#")
         i.fit-icon-large.fit-icon-date
@@ -26,10 +26,36 @@
 
 
   div(data-role='content')
-    ul(data-role="listview")
-      li(ng-repeat="train in select_trains  ")
+    ul(data-role="listview", ng-class="edit_mode?'with-control':''")
+      li(ng-repeat="train in select_trains ")
         img.exercise-img( src="{{exercises[train.id_exercise].img}}")
         .li-content
           a(href="#exercise_page")
-            h3.red {{exercises[train.id_exercise].name}}
+            h3(style="color:{{mode[train.mode].color}};") {{exercises[train.id_exercise].name}}
           p {{musclegroups[train.id_muscle_group]}}
+          a.ui-btn.ui-btn-no-border.ui-btn-bottom-right(href="#",ng-click="nextMode(train)")
+            i.fit-icon-mid.fit-icon-charge
+
+        .li-control.ui-grid-d.center
+          .ui-block-a
+            a.ui-btn.ui-btn-no-border(href="#", ng-click="addAfter(train)")
+              i.fit-icon-large.fit-icon-add
+          .ui-block-b
+            a.ui-btn.ui-btn-no-border(href="#", ng-click="positionUp(train)")
+              i.fit-icon-large.fit-icon-up
+          .ui-block-c
+            a.ui-btn.ui-btn-no-border(href="#", ng-click="positionDown(train)")
+              i.fit-icon-large.fit-icon-down
+          .ui-block-d
+            a.ui-btn.ui-btn-no-border(href="#",ng-click="replace(train)")
+              i.fit-icon-large.fit-icon-refresh
+          .ui-block-e
+            a.ui-btn.ui-btn-no-border(href="#",ng-click="remove(train)")
+              i.fit-icon-large.fit-icon-remove
+
+
+      li(ng-if="!select_trains.length")
+        .li-control.ui-grid-d.center
+          .ui-block-a
+            a.ui-btn.ui-btn-no-border(href="#select_muscle_page")
+              i.fit-icon-large.fit-icon-add

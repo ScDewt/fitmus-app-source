@@ -273,6 +273,7 @@ body.ui-overlay-a {
   color: #006500;
 }
 .ui-page .ui-content .ui-listview li .li-control {
+  display: none;
   position: absolute;
   top: 100%;
   left: 0;
@@ -334,6 +335,9 @@ body.ui-overlay-a {
 }
 .ui-page .ui-content .ui-listview.with-control li {
   margin-bottom: 3em;
+}
+.ui-page .ui-content .ui-listview.with-control .li-control {
+  display: block;
 }
 .ui-page .ui-content .ui-listview.hide-link li a.ui-btn {
   color: #000;
