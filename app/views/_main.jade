@@ -30,7 +30,7 @@
       li(ng-repeat="train in select_trains ")
         img.exercise-img( src="{{exercises[train.id_exercise].img}}")
         .li-content
-          a(href="#exercise_page")
+          a(href="#", ng-click="select(train)")
             h3(style="color:{{mode[train.mode].color}};") {{exercises[train.id_exercise].name}}
           p {{musclegroups[train.id_muscle_group]}}
           a.ui-btn.ui-btn-no-border.ui-btn-bottom-right(href="#",ng-click="nextMode(train)")

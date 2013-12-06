@@ -1,4 +1,4 @@
-#exercise_page.hide(data-role='page', data-quicklinks='true')
+#exercise_page.hide(data-role='page', data-quicklinks='true', ng-controller='ExerciseCtrl')
   div(data-role='header', data-position="fixed")
     h2
       span.fit-logo F
@@ -12,19 +12,22 @@
     div(data-role="navbar")
       ul
         li
-          a(href="#") Упражнение
+          a(href="//fitmus.com/exercise/id/{{glob.select_train.id_exercise}}", ng-external-link) Упражнение
         li
-          a(href="#") Мишца
+          a(href="//fitmus.com/muscle/group/{{glob.select_train.id_muscle_group}}", ng-external-link) Мишца
   div(data-role='content')
     ul(data-role="listview")
       li
-        img.exercise-img( src="/img/mans/man.png")
+        img.exercise-img( src="{{exercises[glob.select_train.id_exercise].img}}")
         .li-content
-          h3.red
-            | Сведение рук в тренажере с
-            | верхним кроссовером и
-            | небольшим наклоном вниз
-          p грудь
+          //h3.red
+          //  | Сведение рук в тренажере с
+          //  | верхним кроссовером и
+          //  | небольшим наклоном вниз
+          //p грудь
+          h3(style="color:{{mode[glob.select_train.mode].color}};") {{exercises[glob.select_train.id_exercise].name}}
+          p {{musclegroups[glob.select_train.id_muscle_group]}}
+
       li
         table
           tr

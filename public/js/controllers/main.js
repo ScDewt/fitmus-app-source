@@ -13,7 +13,6 @@ function MainCtrl($scope, connect, navigation, sharedObject) {
     $scope.exercises = {};
     $scope.select_exercises = {};
     $scope.musclegroups = {};
-    $scope.musclegroup_exercises = {};
     sharedObject.registerScope($scope);
 
 
@@ -30,7 +29,6 @@ function MainCtrl($scope, connect, navigation, sharedObject) {
             $scope.musclegroups = data.data.musclegroup;
             $scope.mode = data.data.mode;
             $scope.exercises = data.data.exercise;
-            $scope.musclegroup_exercises = data.data.musclegroup_exercise;
             $scope.trains = data.train;
             modeNames = Object.keys($scope.mode);
             selectExercise($scope.glob.select_timestamp);
@@ -99,6 +97,10 @@ function MainCtrl($scope, connect, navigation, sharedObject) {
         insert_index  = $scope.select_trains.indexOf(train)+1;
         is_replace  = true;
         location.hash = "#select_muscle_page";
+    };
+    $scope.select = function(train){
+        $scope.glob.select_train = train;
+        location.hash = "#exercise_page";
     };
 
     function normalisePosition(trains){
