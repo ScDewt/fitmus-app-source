@@ -1,92 +1,46 @@
 (function( $, undefined ) {
 
     $.widget( "mobile.textinput", $.mobile.textinput, {
+        initSelector: "input[type='text']:not(.no-jqm-widget)," +
+            "input[type='search']:not(.no-jqm-widget)," +
+            ":jqmData(type='search'):not(.no-jqm-widget)," +
+            "input[type='number']:not(.no-jqm-widget)," +
+            ":jqmData(type='number'):not(.no-jqm-widget)," +
+            "input[type='password']:not(.no-jqm-widget)," +
+            "input[type='email']:not(.no-jqm-widget)," +
+            "input[type='url']:not(.no-jqm-widget)," +
+            "input[type='tel']:not(.no-jqm-widget)," +
+            "textarea:not(.no-jqm-widget)," +
+            "input[type='time']:not(.no-jqm-widget)," +
+            "input[type='date']:not(.no-jqm-widget)," +
+            "input[type='month']:not(.no-jqm-widget)," +
+            "input[type='week']:not(.no-jqm-widget)," +
+            "input[type='datetime']:not(.no-jqm-widget)," +
+            "input[type='datetime-local']:not(.no-jqm-widget)," +
+            "input[type='color']:not(.no-jqm-widget)," +
+            "input:not([type]):not(.no-jqm-widget)," +
+            "input[type='file']:not(.no-jqm-widget)",
         options: {
-            inputHide:false,
-            additionalBtn: false,
-            additionalBtnContent: "BTN",
-            additionalBtnClass: "red",
-            additionalBtnOnClick: function(){}
+            inputHide:false
         },
 
         _create: function() {
             this._super();
-
-            if ( !!this.options.additionalBtn ) {
-                this._addAdditionalBtn();
-            }
             this._setInputHide(this.options.inputHide);
-        },
-
-        additionalButton: function() {
-
-            return $( "<a href='#' class='ui-btn ui-input-add "+this.options.additionalBtnClass+"'>" + this.options.additionalBtnContent + "</a>" );
-
         },
 
         _setInputHide: function(state) {
             this.widget().css("display",state?"none":"");
         },
 
-        _addAdditionalBtn: function() {
-
-            if ( !this.options.enhanced ) {
-                this._enhanceAdditional();
-            }
-
-            $.extend( this, {
-                _additionalBtn: this.widget().find("a.ui-input-add")
-            });
-
-            this._bindClearEvents();
-
-        },
-
-        _enhanceAdditional: function() {
-
-            this.additionalButton().appendTo( this.widget() );
-            this.widget().addClass( "ui-input-has-additional" );
-
-        },
-
-        _bindClearEvents: function() {
-
-            this._on( this._additionalBtn, {
-                "click": this.options.additionalBtnOnClick
-            });
-
-        },
-
-        _unbindClear: function() {
-            this._off( this._additionalBtn, "click");
-        },
-
         _setOptions: function( options ) {
             this._super( options );
-
-            if ( options.additionalBtn !== undefined && !this.element.is( "textarea, :jqmData(type='range')" ) ) {
-                if ( options.additionalBtn ) {
-                    this._addAdditionalBtn();
-                } else {
-                    this._destroyAdditional();
-                }
-            }
-
-            if ( options.additionalBtnContent !== undefined && this._additionalBtn !== undefined ) {
-                this._additionalBtn.text( options.additionalBtnContent );
-            }
             this._setInputHide(this.options.inputHide);
-        },
-
-        _destroyAdditional: function() {
-            this.element.removeClass( "ui-input-has-additional" );
-            this._unbindClear()._additionalBtn.remove();
         },
 
         _destroy: function() {
             this._super();
             this._setInputHide(false);
-            this._destroyAdditional();
         }
 
     });

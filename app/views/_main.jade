@@ -13,7 +13,7 @@
         i.fit-icon-large.fit-icon-pencil
       a.ui-btn.ui-btn-no-border(href="#")
         i.fit-icon-large.fit-icon-date
-        input(type="date", data-input-hide="true", ng-model="glob.date", ng-mobipick='{ locale: "ru", buttonTheme: "a", popup:{ theme: "b" } }')
+        input(type="date", data-input-hide="true", ng-model="select_date", ng-mobipick='{ locale: "ru", buttonTheme: "a", popup:{ theme: "b" } }')
     div(style="border-bottom: 1px solid #030303;" )
     div(data-role="navbar")
       a.ui-btn.ui-btn-no-border.ui-btn-left(href="#", ng-click="prevDay()")
@@ -21,19 +21,19 @@
       a.ui-btn.ui-btn-no-border.ui-btn-right(href="#", ng-click="nextDay()")
         i.fit-icon-large.fit-icon-right-arrow
       div.date-header
-        h3 {{glob.select_timestamp*1000 | date: 'EEEE'}}
-        p {{glob.select_timestamp*1000 | date: 'd MMMM yyyy'}}
+        h3 {{select_timestamp*1000 | date: 'EEEE'}}
+        p {{select_timestamp*1000 | date: 'd MMMM yyyy'}}
 
 
   div(data-role='content')
     ul(data-role="listview", ng-class="edit_mode?'with-control':''")
       li(ng-repeat="train in select_trains ")
         img.exercise-img( src="{{exercises[train.id_exercise].img}}")
-        .li-content
+        .li-content(ng-chose-mode="train")
           a(href="#", ng-click="select(train)")
-            h3(style="color:{{mode[train.mode].color}};") {{exercises[train.id_exercise].name}}
+            h3(ng-color-mode) {{exercises[train.id_exercise].name}}
           p {{musclegroups[train.id_muscle_group]}}
-          a.ui-btn.ui-btn-no-border.ui-btn-bottom-right(href="#",ng-click="nextMode(train)")
+          a.ui-btn.ui-btn-no-border.ui-btn-bottom-right(href="#", ng-next-mode)
             i.fit-icon-mid.fit-icon-charge
 
         .li-control.ui-grid-d.center

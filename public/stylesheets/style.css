@@ -228,17 +228,34 @@
   margin: -0.7em;
   padding: .7em;
 }
+#exercise_page .li-content,
 #main_page .li-content {
   color: #9E9E9E;
 }
+#exercise_page .li-content a.ui-btn-bottom-right,
 #main_page .li-content a.ui-btn-bottom-right {
   right: -0.5em;
   bottom: -0.5em;
   color: #9E9E9E;
 }
+#exercise_page .with-control .li-content a.ui-btn-bottom-right,
 #main_page .with-control .li-content a.ui-btn-bottom-right {
   color: #333;
 }
 #select_exercise_page .ui-listview a.ui-btn-bottom-right {
   color: #333;
+}
+#exercise_page .for-no-time-inline {
+  display: none;
+}
+#exercise_page .for-no-time-inline a {
+  display: inline-block;
+  vertical-align: bottom;
+  margin: -0.65em 0;
+}
+#exercise_page .no-time .for-time {
+  display: none;
+}
+#exercise_page .no-time .for-no-time-inline {
+  display: inline;
 }

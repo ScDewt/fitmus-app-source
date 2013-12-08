@@ -1,4 +1,4 @@
-#settings_page.hide(data-role='page', data-quicklinks='true', data-theme="b")
+#settings_page.hide(data-role='page', data-quicklinks='true', data-theme="b", ng-controller='SettingsCtrl')
   div(data-role='header', data-position="fixed")
     h2
       span.fit-logo F
@@ -11,17 +11,17 @@
     h3 Внешний вид
     h4
       | Отображать время
-      input(type="checkbox")
+      input(type="checkbox", ng-model="settings.is_show_time")
     h4
       | Единицы веса
-      .ui-btn КГ
+      .ui-btn(ng-chose-unit="settings.weight_unit", ng-chose-unit-data="units.weight") КГ
     h4
       | Единицы расстояния
-      .ui-btn КМ
+      .ui-btn(ng-chose-unit="settings.distance_unit", ng-chose-unit-data="units.distance")  КМ
     h3 Синхронизация
     h4
       | Автоматическая синхрозизацыя
-      input(type="checkbox")
+      input(type="checkbox", ng-model="settings.is_auto_update")
     h3 Аккаунт
     h4
       a(href="#auth_page") Вход под другим аккаунтом

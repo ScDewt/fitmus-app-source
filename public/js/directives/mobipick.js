@@ -7,13 +7,13 @@ app.directive('ngMobipick', function() {
                     $(element).click();
                     return false;
                 });
-            scope.$watch("glob.date",function(newDate){
+            scope.$watch(attrs.ngModel,function(newDate){
                 $(element).mobipick({
                     date:newDate
                 });
             });
             $(element).on("change",function(){
-                scope.glob.date = $(element).val();
+                scope[attrs.ngModel] = $(element).val();
                 scope.$apply();
             });
         }

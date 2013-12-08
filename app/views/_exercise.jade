@@ -2,8 +2,8 @@
   div(data-role='header', data-position="fixed")
     h2
       span.fit-logo F
-      | Вторник,&nbsp;
-      span.small 1 сентября
+      | {{select_timestamp*1000 | date: 'EEEE'}},&nbsp;
+      span.small {{select_timestamp*1000 | date: 'd MMMM'}}
     a.ui-btn.ui-btn-no-border.ui-btn-left.less-left(href="#main_page")
       i.fit-icon-large.fit-icon-left-arrow
     .btn-group-right
@@ -12,23 +12,71 @@
     div(data-role="navbar")
       ul
         li
-          a(href="//fitmus.com/exercise/id/{{glob.select_train.id_exercise}}", ng-external-link) Упражнение
+          a(href="//fitmus.com/exercise/id/{{select_train.id_exercise}}", ng-external-link) Упражнение
         li
-          a(href="//fitmus.com/muscle/group/{{glob.select_train.id_muscle_group}}", ng-external-link) Мишца
+          a(href="//fitmus.com/muscle/group/{{select_train.id_muscle_group}}", ng-external-link) Мишца
   div(data-role='content')
     ul(data-role="listview")
       li
-        img.exercise-img( src="{{exercises[glob.select_train.id_exercise].img}}")
-        .li-content
-          //h3.red
-          //  | Сведение рук в тренажере с
-          //  | верхним кроссовером и
-          //  | небольшим наклоном вниз
-          //p грудь
-          h3(style="color:{{mode[glob.select_train.mode].color}};") {{exercises[glob.select_train.id_exercise].name}}
-          p {{musclegroups[glob.select_train.id_muscle_group]}}
+        img.exercise-img( src="{{exercises[select_train.id_exercise].img}}")
+        .li-content(ng-chose-mode="select_train")
+          h3(ng-color-mode) {{exercises[select_train.id_exercise].name}}
+          p {{musclegroups[select_train.id_muscle_group]}}
+          a.ui-btn.ui-btn-no-border.ui-btn-bottom-right(href="#", ng-next-mode)
+            i.fit-icon-mid.fit-icon-charge
 
-      li
+      li(ng-repeat="(index,approach) in select_train.result| orderIntKey:-1")
+        div(ng-approach="approach")
+          table
+            tr
+              td
+                | {{index+1}}
+              td
+                .ui-input-text.ui-body-inherit.ui-corner-all.ui-shadow-inset.ui-input-has-additional
+                  input.no-jqm-widget(type="number", value="10.88", min="0.00", ng-approach-result-1)
+                  a.ui-btn.ui-input-add.grey(href="#") BLANK
+              td
+                | X
+              td
+                .ui-input-text.ui-body-inherit.ui-corner-all.ui-shadow-inset.ui-input-has-additional
+                  input.no-jqm-widget(type="number", value="10.88", min="0.00", ng-approach-result-2)
+                  a.ui-btn.ui-input-add.grey(href="#") BLANK
+
+            tr.for-time
+              td
+                a.ui-btn.ui-btn-no-border.ui-btn-short(href="#", ng-click="remove(index+1)")
+                  i.fit-icon-mid.fit-icon-remove
+              td
+                .ui-input-text.ui-body-inherit.ui-corner-all.ui-shadow-inset.ui-input-has-additional
+                  input.no-jqm-widget(type="text", value="00:00", ng-approach-rest, readonly)
+                  a.ui-btn.ui-input-add.two-line(href="#")
+                    | Отдых
+                    br
+                    i.ui-icon-clock-fix
+              td
+              td
+                .ui-input-text.ui-body-inherit.ui-corner-all.ui-shadow-inset.ui-input-has-additional
+                  input.no-jqm-widget(type="text", value="00:00", ng-approach-work, readonly)
+                  a.ui-btn.ui-input-add.purple.two-line(href="#")
+                    | Работа
+                    br
+                    i.ui-icon-clock-fix
+
+          dl.left
+            dt.for-no-time-inline
+              a.ui-btn.ui-btn-no-border.ui-btn-short(href="#", ng-click="remove(index+1)")
+                i.fit-icon-mid.fit-icon-remove
+            dd БЫЛО:
+            dt 95 x 8
+          dl.right.for-time
+            dd Отдых:
+            dt.lime 01:30
+            dd Работа:
+            dt.purple 00:12
+          .clearfix
+
+
+      //li
         table
           tr
             td

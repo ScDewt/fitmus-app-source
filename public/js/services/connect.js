@@ -10,7 +10,7 @@ app.factory('connect',function ($rootScope){
             data: null,
             train: null,
             note: null
-        };
+        }, loginListeners = [];
 
     function getJSON(url,callback){
         if(!userData.user){
@@ -43,6 +43,9 @@ app.factory('connect',function ($rootScope){
     }
 
     return {
+        onLogin:function(callback){
+            loginListeners.push(callback);
+        },
         login: function (login, pass, callback){
             $.getJSON(rootUrl+"login/",{
                 app_id: app_id,
@@ -52,6 +55,9 @@ app.factory('connect',function ($rootScope){
             }).done(function(data){
                 userData.user = data.data;
                 callback(data.error,data.data);
+                loginListeners.forEach(function(callback){
+                    callback(null,data.data);
+                });
             }).fail(function(jqXHR, textStatus, errorThrown){
                 callback({
                   message: errorThrown
@@ -100,6 +106,12 @@ app.factory('connect',function ($rootScope){
                 note: this.getNote
             },function(err,data){
                 callback(err,data);
+                $rootScope.musclegroups = data.data.musclegroup;
+                $rootScope.exercises = data.data.exercise;
+                $rootScope.musclegroup_exercises = data.data.musclegroup_exercise;
+                $rootScope.units = data.data.units;
+                $rootScope.mode = data.data.mode;
+                $rootScope.mode_names = Object.keys(data.data.mode);
             });
         }
     };
