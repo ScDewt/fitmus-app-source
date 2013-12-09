@@ -2,14 +2,19 @@
 
 /* Controllers */
 
-function ExerciseCtrl($scope, connect, navigation, $rootScope) {
+function ExerciseCtrl($scope, connect, navigation, $rootScope, $sce) {
 
     navigation.beforePageChange("exercise_page",function(){
         if(!$rootScope.select_train.result){
             addEmptyResult();
         }
-        $rootScope.$apply();
+        $rootScope.comment = $sce.trustAsHtml($rootScope.select_train.comment || "");
+        $scope.$apply();
         updateList();
+    });
+
+    navigation.beforePageLeave("exercise_page",function(){
+        $rootScope.$broadcast("stopTimer",null);
     });
 
     $scope.remove = function(index){

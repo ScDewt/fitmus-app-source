@@ -15,5 +15,23 @@
             }
             return result;
         };
+    };
+    _.diff = function(prev, now) {
+        var changes = {};
+        for (var prop in now) {
+            if(prop.indexOf("$$") == 0){
+                continue;
+            }
+            if (!prev || prev[prop] !== now[prop]) {
+                if (typeof now[prop] == "object" && prev) {
+                    var c = _.diff(prev[prop], now[prop]);
+                    if (! _.isEmpty(c) ) // underscore
+                        changes[prop] = c;
+                } else {
+                    changes[prop] = _.clone( now[prop], true);
+                }
+            }
+        }
+        return changes;
     }
 })(_);

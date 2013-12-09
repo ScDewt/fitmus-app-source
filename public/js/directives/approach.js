@@ -126,7 +126,7 @@ app.directive('ngApproach', function($compile, $rootScope, $timeout) {
                         stopTimer();
                     }
                     if(value == 0){
-                        $rootScope.$broadcast("startTimer",key);
+                        $rootScope.$broadcast("stopTimer",key);
                         tickTimer();
                     }
                 });
@@ -137,7 +137,7 @@ app.directive('ngApproach', function($compile, $rootScope, $timeout) {
                     }
                 });
 
-                $rootScope.$on("startTimer",function(tKey){
+                $rootScope.$on("stopTimer",function(tKey){
                     if(tKey!= key){
                         stopTimer();
                     }

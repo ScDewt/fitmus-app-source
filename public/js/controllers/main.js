@@ -2,9 +2,9 @@
 
 /* Controllers */
 
-function MainCtrl($scope, connect, navigation, $rootScope) {
-    var now = new Date();
-    var modeNames = [],
+function MainCtrl($scope, connect, navigation, $rootScope, $sce) {
+    var now = new Date(),
+        block = false,
         insert_index = 0,
         is_replace = false;
 
@@ -16,10 +16,13 @@ function MainCtrl($scope, connect, navigation, $rootScope) {
                 alert(err.message);
                 return ;
             }
-            $scope.trains = data;
+
+            $rootScope.trains = data;
             selectExercise($rootScope.select_timestamp);
             if(id_add_exercise){
                 addExercise(id_add_exercise);
+            }else{
+                setBlock();
             }
             $scope.$apply();
         });
@@ -32,13 +35,21 @@ function MainCtrl($scope, connect, navigation, $rootScope) {
         $rootScope.select_timestamp = getMoscovTimeStamp(aDate[0],aDate[1]-1,aDate[2]-1)
         console.log("$rootScope.select_timestamp",$rootScope.select_timestamp);
     });
+    $rootScope.$watch('trains', _.debounce(function(newTrains, oldTrains){
+        if(!block && oldTrains){
+            var diff = _.diff(oldTrains,newTrains);
+            _.forEach(diff,function(item, key){
+                this[key].$$_status = "updated";
+            },$rootScope.trains);
+        }
+    },50),true);
 
     //timestamp on Moscov time +4h
     $rootScope.select_date = XDate(now).toString("yyyy-MM-dd");
-    $scope.nextDay = function(){
+    $rootScope.nextDay = function(){
         $rootScope.select_date = XDate($rootScope.select_date).addDays(1).toString("yyyy-MM-dd");
     };
-    $scope.prevDay = function(){
+    $rootScope.prevDay = function(){
         $rootScope.select_date = XDate($rootScope.select_date).addDays(-1).toString("yyyy-MM-dd");
     };
     $scope.toggleState = function(){
@@ -85,6 +96,11 @@ function MainCtrl($scope, connect, navigation, $rootScope) {
         location.hash = "#exercise_page";
     };
 
+    function setBlock(){
+        block = true;
+        setTimeout(function(){ block = false; },200);
+    }
+
     function normalisePosition(trains){
         trains.forEach(function(train,index){
             train.position = index + 1;
@@ -110,10 +126,10 @@ function MainCtrl($scope, connect, navigation, $rootScope) {
         }else{
             $scope.select_trains.splice(insert_index,0,train);
         }
-        if(!$scope.trains[timestamp]){
-            $scope.trains[timestamp] = [train];
+        if(!$rootScope.trains[timestamp]){
+            $rootScope.trains[timestamp] = [train];
         }else{
-            $scope.trains[timestamp].push(train);
+            $rootScope.trains[timestamp].push(train);
         }
         normalisePosition($scope.select_trains);
         updateList();
@@ -125,8 +141,8 @@ function MainCtrl($scope, connect, navigation, $rootScope) {
 
     function selectExercise(timestamp, oldTimestamp) {
         var trains;
-        if($scope.trains){
-            trains  = $scope.trains[timestamp] || [];
+        if($rootScope.trains){
+            trains  = $rootScope.trains[timestamp] || [];
             trains = trains.filter(function(train){
                 return train.status != "Deleted";
             });
@@ -136,6 +152,13 @@ function MainCtrl($scope, connect, navigation, $rootScope) {
             normalisePosition(trains);
             console.log(trains);
             $scope.select_trains = trains;
+            $rootScope.comment = $sce.trustAsHtml(trains.reduce(function(total, train){
+                if(train.comment){
+                    return total + train.comment + "<br/><br/>";
+                } else {
+                    return total;
+                }
+            },""));
         }
         updateList();
     }

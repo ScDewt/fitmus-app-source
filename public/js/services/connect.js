@@ -33,6 +33,35 @@ app.factory('connect',function ($rootScope){
         });
     }
 
+    function postJSON(url,data,callback){
+        if(!userData.user){
+            callback({
+                message: "неавторизированный доступ"
+            },null);
+            return ;
+        }
+        var url = rootUrl + url + "?" + $.param({
+            app_id: app_id,
+            app_sign: app_sign,
+            user_id: userData.user.id,
+            token: userData.user.token
+        });
+        $.ajax({
+            url:url,
+            type:"POST",
+            data: data,//{ data:JSON.stringify(data) },
+            //contentType:"application/json; charset=utf-8",
+            dataType:"json"
+        }).done(function(data){
+            callback(data.error,data.data);
+        }).fail(function(jqXHR, textStatus, errorThrown){
+            callback({
+                message: errorThrown
+            },null);
+        });
+    }
+
+
     function connectExerciseToMuscle(data){
         angular.forEach(data.musclegroup_exercise,function(values, id_muscle_group){
             for(var i=0;i< values.length;i++){
@@ -40,6 +69,13 @@ app.factory('connect',function ($rootScope){
                 data.exercise[id_exercise].id_muscle_group = id_muscle_group;
             }
         });
+    }
+
+    function markRecord(collection){
+        _.forEach(collection,function(item){
+            item.$$_status = "sync";
+        });
+        return collection;
     }
 
     return {
@@ -85,6 +121,7 @@ app.factory('connect',function ($rootScope){
                 return;
             }
             getJSON("train/",function(err, data){
+                data = markRecord(data);
                 userData.train = data;
                 callback(err, data);
             });
@@ -95,6 +132,7 @@ app.factory('connect',function ($rootScope){
                 return;
             }
             getJSON("note/",function(err, data){
+                data = markRecord(data);
                 userData.note = data;
                 callback(err, data);
             });
@@ -105,13 +143,45 @@ app.factory('connect',function ($rootScope){
                 train: this.getTrain,
                 note: this.getNote
             },function(err,data){
-                callback(err,data);
                 $rootScope.musclegroups = data.data.musclegroup;
                 $rootScope.exercises = data.data.exercise;
                 $rootScope.musclegroup_exercises = data.data.musclegroup_exercise;
                 $rootScope.units = data.data.units;
                 $rootScope.mode = data.data.mode;
                 $rootScope.mode_names = Object.keys(data.data.mode);
+                callback(err,data);
+            });
+        },
+        sync: function(callback){
+            async.parallel({
+                note: function(cb){
+                    var toUpdate = {};
+                    _.forEach(userData.note, function(item, key){
+                        if(item.$$_status == "updated"){
+                            this[key] = item;
+                        }
+                    },toUpdate);
+                    postJSON("note/",{ data: toUpdate},function(err, data){
+                        markRecord(data);
+                        userData.note = data;
+                        callback(err, data);
+                    });
+                },
+                train: function(cb){
+                    var toUpdate = {};
+                    _.forEach(userData.train, function(item, key){
+                        if(item.$$_status == "updated"){
+                            this[key] = item;
+                        }
+                    },toUpdate);
+                    postJSON("train/",{ data: toUpdate},function(err, data){
+                        markRecord(data);
+                        userData.train = data;
+                        callback(err, data);
+                    });
+                }
+            },function(err, data){
+                callback(err,data);
             });
         }
     };

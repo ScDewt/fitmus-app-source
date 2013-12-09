@@ -1,4 +1,4 @@
-#main_menu.hide(data-role="panel", data-position="left", data-display="overlay", data-theme="b")
+#main_menu.hide(data-role="panel", data-position="left", data-display="overlay", data-theme="b", ng-controller='MenuCtrl')
   ul
     li
       a(href="#main_page")
@@ -9,7 +9,7 @@
         i.fit-icon-edit
         | Записи
     li
-      a(href="#")
+      a(href="#", ng-click="sync()")
         i.fit-icon-save
         | Синзронизацыя
     li

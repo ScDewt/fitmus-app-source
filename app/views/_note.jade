@@ -1,25 +1,27 @@
-#note_page.hide(data-role='page', data-quicklinks='true')
+#note_page.hide(data-role='page', data-quicklinks='true', ng-controller='NoteCtrl')
   div(data-role='header', data-position="fixed")
     h2
       span.fit-logo F
-      | Расписание
+      | Записи
     a.main_menu-link.ui-btn.ui-btn-no-border.ui-btn-left(href="#")
       i.fit-icon-big.fit-icon-schedules
-    .btn-group-right
-      a.ui-btn.ui-btn-no-border(href="#cooment_popup", data-rel="popup", data-transition="pop")
-        i.fit-icon-large.fit-icon-comment
-      a.ui-btn.ui-btn-no-border(href="#")
-        i.fit-icon-large.fit-icon-date
-    div(style="border-bottom: 1px solid #030303;" )
-    div(data-role="navbar")
-      a.ui-btn.ui-btn-no-border.ui-btn-left(href="#")
-        i.fit-icon-large.fit-icon-left-arrow
-      a.ui-btn.ui-btn-no-border.ui-btn-right(href="#")
-        i.fit-icon-large.fit-icon-right-arrow
-      div.date-header
-        h3 Вторник
-        p 1 сентября 2013
+      .btn-group-right
+        a.ui-btn.ui-btn-no-border(href="#cooment_popup", data-rel="popup", data-transition="pop")
+          i.fit-icon-large.fit-icon-comment
+        a.ui-btn.ui-btn-no-border(href="#")
+          i.fit-icon-large.fit-icon-date
+          input(type="date", data-input-hide="true", ng-model="select_date", ng-mobipick='{ locale: "ru", buttonTheme: "a", popup:{ theme: "b" } }')
+      div(style="border-bottom: 1px solid #030303;" )
+      div(data-role="navbar")
+        a.ui-btn.ui-btn-no-border.ui-btn-left(href="#", ng-click="prevDay()")
+          i.fit-icon-large.fit-icon-left-arrow
+        a.ui-btn.ui-btn-no-border.ui-btn-right(href="#", ng-click="nextDay()")
+          i.fit-icon-large.fit-icon-right-arrow
+        div.date-header
+          h3 {{select_timestamp*1000 | date: 'EEEE'}}
+          p {{select_timestamp*1000 | date: 'd MMMM yyyy'}}
+
 
   .short(data-role='content')
-    textarea
+    textarea(ng-model="select_note.note")
       | orem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов
