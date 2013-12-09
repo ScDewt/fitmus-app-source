@@ -1,14 +1,10 @@
-extends layout
+include _auth
+include _main
+include _exercise
+include _select_muscle
+include _select_exercise
+include _note
+include _settings
 
-block contents
-
-  include _auth
-  include _main
-  include _exercise
-  include _select_muscle
-  include _select_exercise
-  include _note
-  include _settings
-
-  include _comment
-  include _menu
+include _comment
+include _menu
