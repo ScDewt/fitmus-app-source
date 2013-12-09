@@ -161,7 +161,7 @@ app.factory('connect',function ($rootScope){
                             this[key] = item;
                         }
                     },toUpdate);
-                    postJSON("note/",{ data: toUpdate},function(err, data){
+                    postJSON("note/",{ data: _.cloneCleaner(toUpdate)},function(err, data){
                         markRecord(data);
                         userData.note = data;
                         callback(err, data);
@@ -174,7 +174,7 @@ app.factory('connect',function ($rootScope){
                             this[key] = item;
                         }
                     },toUpdate);
-                    postJSON("train/",{ data: toUpdate},function(err, data){
+                    postJSON("train/",{ data: _.cloneCleaner(toUpdate)},function(err, data){
                         markRecord(data);
                         userData.train = data;
                         callback(err, data);
