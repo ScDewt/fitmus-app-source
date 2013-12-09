@@ -27,10 +27,11 @@ module.exports = function (grunt) {
         copy: {
             main: {
                 files: [
-                    {cwd: "public/fonts/", src: ["**"], dest: 'dist/app/fonts/', filter: 'isFile', expand: true},
-                    {cwd: "public/", src: csss, dest: 'dist/app/', filter: 'isFile', expand: true},
-                    {cwd: "public/", src: jss, dest: 'dist/app/', filter: 'isFile', expand: true},
-                    {cwd: "public/libs/", src: images, dest: 'dist/app/libs/', filter: 'isFile', expand: true},
+                    {cwd: "public/fonts/", src: ["**"], dest: 'dist/www/fonts/', filter: 'isFile', expand: true},
+                    {cwd: "public/", src: csss, dest: 'dist/www/', filter: 'isFile', expand: true},
+                    {cwd: "public/", src: jss, dest: 'dist/www/', filter: 'isFile', expand: true},
+                    {cwd: "public/libs/", src: images, dest: 'dist/www/libs/', filter: 'isFile', expand: true},
+                    {cwd: "public/", src: ["res/**","config.xml"], dest: 'dist/www/', filter: 'isFile', expand: true},
                 ]
             }
         },
@@ -43,7 +44,7 @@ module.exports = function (grunt) {
                     }
                 },
                 files: {
-                    "dist/app/index.html": ["app/views/layout.jade"]
+                    "dist/www/index.html": ["app/views/layout.jade"]
                 }
             }
         }

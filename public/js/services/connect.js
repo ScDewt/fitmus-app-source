@@ -110,7 +110,7 @@ app.factory('connect',function ($rootScope){
                 return;
             }
             getJSON("syncdata/",function(err, data){
-                connectExerciseToMuscle(data);
+                connectExerciseToMuscle(data||{});
                 userData.data = data;
                 callback(err, data);
             });
@@ -121,7 +121,7 @@ app.factory('connect',function ($rootScope){
                 return;
             }
             getJSON("train/",function(err, data){
-                data = markRecord(data);
+                data = markRecord(data||{});
                 userData.train = data;
                 callback(err, data);
             });
@@ -132,7 +132,7 @@ app.factory('connect',function ($rootScope){
                 return;
             }
             getJSON("note/",function(err, data){
-                data = markRecord(data);
+                data = markRecord(data||{});
                 userData.note = data;
                 callback(err, data);
             });
