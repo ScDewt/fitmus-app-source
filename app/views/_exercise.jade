@@ -4,7 +4,7 @@
       span.fit-logo F
       | {{select_timestamp*1000 | date: 'EEEE'}},&nbsp;
       span.small {{select_timestamp*1000 | date: 'd MMMM'}}
-    a.ui-btn.ui-btn-no-border.ui-btn-left.less-left(href="#main_page")
+    a.ui-btn.ui-btn-no-border.ui-btn-left.less-left(href="#main_page", data-transition="slideup")
       i.fit-icon-large.fit-icon-left-arrow
     .btn-group-right
       a.ui-btn.ui-btn-no-border(href="#cooment_popup", data-rel="popup", data-transition="pop")
@@ -12,9 +12,9 @@
     div(data-role="navbar")
       ul
         li
-          a(href="//fitmus.com/exercise/id/{{select_train.id_exercise}}", ng-external-link) Упражнение
+          a(href="http://fitmus.com/exercise/id/{{select_train.id_exercise}}", target="_blank") Упражнение
         li
-          a(href="//fitmus.com/muscle/group/{{select_train.id_muscle_group}}", ng-external-link) Мишца
+          a(href="http://fitmus.com/muscle/group/{{select_train.id_muscle_group}}", target="_blank") Мишца
   div(data-role='content')
     ul(data-role="listview")
       li

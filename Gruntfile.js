@@ -5,8 +5,8 @@ module.exports = function (grunt) {
         css, js,
         csss = [],
         jss = [],
-        cssRegex = /link\(rel='stylesheet', href='\/([^']+)'\)/g,
-        jsRegex = /script\(src='\/([^']+)'\)/g;
+        cssRegex = /link\(rel='stylesheet', href='\.\/([^']+)'\)/g,
+        jsRegex = /script\(src='\.\/([^']+)'\)/g;
 
     while ((css = cssRegex.exec(layout)) !== null) {
         csss.push(css[1]);

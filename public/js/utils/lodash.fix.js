@@ -50,7 +50,7 @@
         if (obj instanceof Array) {
             var copy = [];
             for (var i = 0, len = obj.length; i < len; i++) {
-                copy[i] = clone(obj[i]);
+                copy[i] = _.cloneCleaner(obj[i]);
             }
             return copy;
         }
