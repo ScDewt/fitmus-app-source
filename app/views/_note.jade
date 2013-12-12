@@ -10,7 +10,7 @@
           i.fit-icon-large.fit-icon-comment
         a.ui-btn.ui-btn-no-border(href="#")
           i.fit-icon-large.fit-icon-date
-          input(type="date", data-input-hide="true", ng-model="select_date", ng-mobipick='{ locale: "ru", buttonTheme: "a", popup:{ theme: "b" } }')
+          input(type="date", data-input-hide="true", ng-model="select_date", ng-mobipick-root="true", ng-mobipick='{ locale: "ru", buttonTheme: "a", popup:{ theme: "b" } }')
       div(style="border-bottom: 1px solid #030303;" )
       div(data-role="navbar")
         a.ui-btn.ui-btn-no-border.ui-btn-left(href="#", ng-click="prevDay()")
