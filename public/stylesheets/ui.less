@@ -23,14 +23,31 @@ body{
   }
 }
 
-
-#cooment_popup-popup{
-  top: 3em!important;
-  left: .5em!important;
-  right: .5em!important;
-  bottom: .5em!important;
-  max-width: 120%!important;
+/*
+.ui-mobile [data-role=page],
+.ui-mobile [data-role=dialog], .ui-page{
+  display: block;
+  pointer-events: none;
+  opacity: 0;
+  .transform(translate3d(0,0,1px));
 }
+
+.ui-mobile .ui-page-active{
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.ie{
+  .ui-mobile [data-role=page],
+  .ui-mobile [data-role=dialog], .ui-page{
+    display: none;
+    opacity: 1;
+  }
+  .ui-mobile .ui-page-active{
+    display: block;
+  }
+}
+*/
 
 .ui-fit-popup{
   width: 100%;
@@ -63,6 +80,7 @@ body{
 
 .ui-input-has-additional{
   white-space: nowrap;
+  position: relative;
   input{
     display: inline-block;
     width: 60%;
@@ -315,7 +333,10 @@ body{
           margin: 0 -.5em .5em;
           td{
             .ui-input-text{
+              max-width: 9.5em;
               margin: .2em 0;
+              width: 100%;
+              position: relative;
             }
           }
         }

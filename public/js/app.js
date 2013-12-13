@@ -4,7 +4,9 @@
 //        location.hash = this.href.split("#")[1];
 //        return false;
 //    });
-
+//    if ($.browser.msie && $.browser.version < 11) {
+//        $("html").addClass("ie");
+//    }
     jQuery( function() {
         $(".hide").removeClass("hide");
         jQuery( "body>[data-role='panel']" ).panel();
@@ -43,4 +45,9 @@
             $.mobile.changePage("#auth_page");
         }
     });
+    global.onerror = function(){
+        var arr = JSON.parse(localStorage["error-log"]||"[]");
+        arr.push([].slice.call(arguments));
+        localStorage["error-log"] = JSON.stringify(arr);
+    }
 })(window);
