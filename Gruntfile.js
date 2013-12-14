@@ -31,6 +31,7 @@ module.exports = function (grunt) {
                     {cwd: "public/", src: csss, dest: 'dist/www/', filter: 'isFile', expand: true},
                     {cwd: "public/", src: jss, dest: 'dist/www/', filter: 'isFile', expand: true},
                     {cwd: "public/libs/", src: images, dest: 'dist/www/libs/', filter: 'isFile', expand: true},
+                    {cwd: "public/img/mans", src: ["**"], dest: 'dist/www/img/mans', filter: 'isFile', expand: true},
                     {cwd: "public/", src: ["res/**","config.xml"], dest: 'dist/www/', filter: 'isFile', expand: true},
                 ]
             }
