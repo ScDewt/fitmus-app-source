@@ -28,7 +28,7 @@
   div(data-role='content')
     ul(data-role="listview", ng-class="edit_mode?'with-control':''")
       li(ng-repeat="train in select_trains ")
-        img.exercise-img( src="{{exercises[train.id_exercise].img}}")
+        img.exercise-img( ng-exercise-img="exercises[train.id_exercise]")
         .li-content(ng-chose-mode="train")
           a(href="#", ng-click="select(train)")
             h3(ng-color-mode) {{exercises[train.id_exercise].name}}

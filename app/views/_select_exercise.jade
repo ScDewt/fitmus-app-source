@@ -9,7 +9,7 @@
   div(data-role='content')
     ul(data-role="listview")
       li(ng-repeat="(id, exercise) in exercises | inRangeInt: musclegroup_exercises[muscle_id] ")
-        img.exercise-img( src="{{exercise.img}}")
+        img.exercise-img( ng-exercise-img="exercise")
         .li-content
           h3.blue {{exercise.name}}
           p {{musclegroups[muscle_id]}}

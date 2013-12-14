@@ -18,7 +18,7 @@
   div(data-role='content')
     ul(data-role="listview")
       li
-        img.exercise-img( src="{{exercises[select_train.id_exercise].img}}")
+        img.exercise-img( ng-exercise-img="exercises[select_train.id_exercise]")
         .li-content(ng-chose-mode="select_train")
           h3(ng-color-mode) {{exercises[select_train.id_exercise].name}}
           p {{musclegroups[select_train.id_muscle_group]}}
