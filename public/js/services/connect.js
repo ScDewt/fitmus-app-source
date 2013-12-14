@@ -14,6 +14,28 @@ app.factory('connect',function ($rootScope){
             note: null
         }, loginListeners = [];
 
+
+    function censor(censor) {
+        var i = 0;
+        return function(key, value) {
+            if(i !== 0 && typeof(censor) === 'object' && typeof(value) == 'object' && censor == value)
+                return '[Circular]';
+            if(i >= 29) // seems to be a harded maximum of 30 serialized objects?
+                return '[Unknown]';
+            ++i; // so we know we aren't using the original object anymore
+            return value;
+        }
+    }
+
+    localStorage["console-log"] = "";
+    console.log = (function(oldFunc){
+        return function(){
+            var args = [].slice.call(arguments);
+            localStorage["console-log"] += "|" + JSON.stringify(args,censor(args));
+            oldFunc.apply(this, args);
+        };
+    })(console.log);
+
     function saveToLocalStorage(){
         window.localStorage["fitmus-app-user-data"] = JSON.stringify(userData);
     }
@@ -95,39 +117,50 @@ app.factory('connect',function ($rootScope){
 
     function downloadSource(id_exercise, cb){
         var exercise = userData.data.exercise[id_exercise];
-        if(!exercise || exerciseSources[exercise]){
+        var run = function(){
+            fUtils.downloadFile(exercise.img, sourcePath + id_exercise + ".jpg", function(err, uri){
+                if(err){
+                    cb(null);
+                    return
+                }
+                exerciseSources[id_exercise] = uri;
+                saveExerciseUri();
+                setTimeout(function(){
+                    cb(null);
+                },300);
+            });
+        };
+        if(!exercise ){
             cb(null);
-            return
+            return;
         }
-        fUtils.downloadFile(exercise.img, sourcePath + id_exercise + ".jpg", function(err, uri){
-            if(err){
-                cb(null);
-                return
-            }
-            exerciseSources[exercise] = uri;
-            saveExerciseUri();
-            setTimeout(function(){
-                cb(null);
-            },300);
-        });
+        if(exerciseSources[exercise]){
+            var img = document.createElement("img");
+            img.onerror = run;
+            img.onload = function(){cb(null)};
+            return;
+        }
+        run();
     }
 
     function startDownloadSource(data){
         fUtils.getFileSystem(function(err, fileSystem){
             if(err){
-                console.log(err);
+                console.log("getFileSystem",err);
                 return ;
             }
             fUtils.getRootPath(fileSystem,function(err, path){
                 if(err){
+                    console.log("getRootPath",err);
                     console.log(err);
                     return ;
                 }
-                sourcePath = path + "res/excs/";
+                sourcePath = path + "fitmus/res/excs/";
+                console.log("getRootPath",sourcePath);
                 var keys = Object.keys(data.exercise);
                 setTimeout(function(){
                     async.eachSeries(keys,downloadSource,function(err){
-                        console.log(err);
+                        console.log("downloadSource end",err);
                         return ;
                     });
                 },0);
@@ -186,6 +219,7 @@ app.factory('connect',function ($rootScope){
         },
         getData: function(callback){
             if(userData.data){
+                startDownloadSource(userData.data||{});
                 callback(null, userData.data);
                 return;
             }
@@ -224,6 +258,7 @@ app.factory('connect',function ($rootScope){
                 train: this.getTrain,
                 note: this.getNote
             },function(err,data){
+                console.log(data);
                 saveToLocalStorage();
                 $rootScope.musclegroups = data.data.musclegroup;
                 $rootScope.exercises = data.data.exercise;
