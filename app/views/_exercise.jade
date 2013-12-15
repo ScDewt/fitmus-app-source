@@ -26,7 +26,7 @@
             i.fit-icon-mid.fit-icon-charge
 
       li(ng-repeat="(index,approach) in select_train.result| orderIntKey:-1")
-        div(ng-approach="approach", ng-approach-old="")
+        div(ng-approach="approach", ng-approach-old="select_train_old.result[index]")
           table
             tr
               td
@@ -67,12 +67,15 @@
               a.ui-btn.ui-btn-no-border.ui-btn-short(href="#", ng-click="remove(index+1)")
                 i.fit-icon-mid.fit-icon-remove
             dd БЫЛО:
-            dt 95 x 8
+            dt
+              span(ng-approach-old-result-1) 95
+              | x
+              span(ng-approach-old-result-2) 8
           dl.right.for-time
             dd Отдых:
-            dt.lime 01:30
+            dt.lime(ng-approach-old-rest) 01:30
             dd Работа:
-            dt.purple 00:12
+            dt.purple(ng-approach-old-work) 00:12
           .clearfix
 
 
