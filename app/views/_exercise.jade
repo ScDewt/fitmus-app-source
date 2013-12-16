@@ -44,11 +44,11 @@
 
             tr.for-time
               td
-                a.ui-btn.ui-btn-no-border.ui-btn-short(href="#", ng-click="remove(index+1)")
+                a.ui-btn.ui-btn-no-border.ui-btn-short.btn-remove(href="#", ng-click="remove(index+1)")
                   i.fit-icon-mid.fit-icon-remove
               td
                 .ui-input-text.ui-body-inherit.ui-corner-all.ui-shadow-inset.ui-input-has-additional
-                  input.no-jqm-widget(type="text", value="00:00", ng-approach-rest, readonly)
+                  input.no-jqm-widget(type="text", value="00:00", ng-mobipick-time, ng-approach-rest, readonly)
                   a.ui-btn.ui-input-add.two-line(href="#")
                     | Отдых
                     br
@@ -56,7 +56,7 @@
               td
               td
                 .ui-input-text.ui-body-inherit.ui-corner-all.ui-shadow-inset.ui-input-has-additional
-                  input.no-jqm-widget(type="text", value="00:00", ng-approach-work, readonly)
+                  input.no-jqm-widget(type="text", value="00:00", ng-mobipick-time, ng-approach-work, readonly)
                   a.ui-btn.ui-input-add.purple.two-line(href="#")
                     | Работа
                     br
@@ -64,7 +64,7 @@
 
           dl.left
             dt.for-no-time-inline
-              a.ui-btn.ui-btn-no-border.ui-btn-short(href="#", ng-click="remove(index+1)")
+              a.ui-btn.ui-btn-no-border.ui-btn-short.btn-remove(href="#", ng-click="remove(index+1)")
                 i.fit-icon-mid.fit-icon-remove
             dd БЫЛО:
             dt
@@ -78,33 +78,3 @@
             dt.purple(ng-approach-old-work) 00:12
           .clearfix
 
-
-      //li
-        table
-          tr
-            td
-              | 1
-            td
-              input(type="number", value="10.88", data-additional-btn="true",data-additional-btn-content="КГ")
-            td
-              | X
-            td
-              input(type="number", value="112", data-additional-btn="true", data-additional-btn-class="grey", data-additional-btn-content="РАЗ")
-          tr
-            td
-              a.ui-btn.ui-btn-no-border.ui-btn-short(href="#")
-                i.fit-icon-mid.fit-icon-remove
-            td
-              input(type="number", value="10.88", data-additional-btn="true", data-additional-btn-class="two-line", data-additional-btn-content="Отдых<br><i class='ui-icon-clock-fix'/>")
-            td
-            td
-              input(type="number", value="10.88", data-additional-btn="true", data-additional-btn-class="two-line purple",data-additional-btn-content="Работа<br><i class='ui-icon-clock-fix'/>")
-        dl.left
-          dd БЫЛО:
-          dt 95 x 8
-        dl.right
-          dd Отдых:
-          dt.lime 01:30
-          dd Работа:
-          dt.purple 00:12
-        .clearfix
