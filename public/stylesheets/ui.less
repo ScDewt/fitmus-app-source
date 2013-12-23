@@ -148,6 +148,9 @@ body{
   background: #353535;
 }
 
+
+
+
 .ui-page-theme-a .ui-btn{
   color: #fff;
   border: none;
@@ -158,6 +161,25 @@ body{
 }
 
 .ui-page{
+  .text-shadow{
+    text-shadow: 0 1px 0 #111!important;
+    .ui-btn{
+      text-shadow: 0 1px 0 #111!important;
+    }
+    [class*="fit-icon-"]{
+      text-shadow: 0 1px 0 #111!important;
+    }
+  }
+  .no-text-shadow{
+    text-shadow: 0 0 0 #111!important;
+    .ui-btn{
+      text-shadow: 0 0 0 #111!important;
+    }
+    [class*="fit-icon-"]{
+      text-shadow: 0 0 0 #111!important;
+    }
+  }
+
   .ui-header {
     &.ui-bar-inherit{
       background: #2D2D2D;

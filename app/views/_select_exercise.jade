@@ -1,5 +1,5 @@
 #select_exercise_page.hide(data-role='page', data-quicklinks='true', ng-controller='SelectExerciseCtrl')
-  div(data-role='header', data-position="fixed")
+  div.text-shadow(data-role='header', data-position="fixed")
     h2
       span.fit-logo F
       | Добавить упражнение
@@ -13,5 +13,5 @@
         .li-content
           h3.blue {{exercise.name}}
           p {{musclegroups[muscle_id]}}
-        a.ui-btn.ui-btn-no-border.ui-btn-bottom-right(href="#main_page?{{exercise.id}}", data-transition="slideup")
+        a.ui-btn.ui-btn-no-border.ui-btn-bottom-right.no-text-shadow(href="#main_page?{{exercise.id}}", data-transition="slideup")
           i.fit-icon-big.fit-icon-add

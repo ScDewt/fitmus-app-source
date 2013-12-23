@@ -1,5 +1,5 @@
 #exercise_page.hide(data-role='page', data-quicklinks='true', ng-controller='ExerciseCtrl')
-  div(data-role='header', data-position="fixed")
+  div.text-shadow(data-role='header', data-position="fixed")
     h2
       span.fit-logo F
       | {{select_timestamp*1000 | date: 'EEEE'}},&nbsp;
@@ -23,7 +23,7 @@
           h3(ng-color-mode) {{exercises[select_train.id_exercise].name}}
           p {{musclegroups[select_train.id_muscle_group]}}
           a.ui-btn.ui-btn-no-border.ui-btn-bottom-right(href="#", ng-next-mode)
-            i.fit-icon-mid.fit-icon-charge
+            i.fit-icon-mid.fit-icon-charge.no-text-shadow
 
       li(ng-repeat="(index,approach) in select_train.result| orderIntKey:-1")
         div(ng-approach="approach", ng-approach-old="select_train_old.result[index+1]")
@@ -44,7 +44,7 @@
 
             tr.for-time
               td
-                a.ui-btn.ui-btn-no-border.ui-btn-short.btn-remove(href="#", ng-click="remove(index+1)")
+                a.ui-btn.ui-btn-no-border.ui-btn-short.btn-remove(href="#", ng-if="isShowRemoveBtn(index+1)", ng-click="remove(index+1)")
                   i.fit-icon-mid.fit-icon-remove
               td
                 .ui-input-text.ui-body-inherit.ui-corner-all.ui-shadow-inset.ui-input-has-additional
@@ -64,7 +64,7 @@
 
           dl.left
             dt.for-no-time-inline
-              a.ui-btn.ui-btn-no-border.ui-btn-short.btn-remove(href="#", ng-click="remove(index+1)")
+              a.ui-btn.ui-btn-no-border.ui-btn-short.btn-remove(href="#", ng-if="isShowRemoveBtn(index+1)", ng-click="remove(index+1)")
                 i.fit-icon-mid.fit-icon-remove
             dd БЫЛО:
             dt

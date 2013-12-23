@@ -1,5 +1,5 @@
 #main_page.hide(data-role='page', data-quicklinks='true', ng-controller='MainCtrl')
-  div(data-role='header', data-position="fixed")
+  div.text-shadow(data-role='header', data-position="fixed")
     h2
       span.fit-logo F
       | Расписание
@@ -34,9 +34,9 @@
             h3(ng-color-mode) {{exercises[train.id_exercise].name}}
           p {{musclegroups[train.id_muscle_group]}}
           a.ui-btn.ui-btn-no-border.ui-btn-bottom-right(href="#", ng-next-mode)
-            i.fit-icon-mid.fit-icon-charge
+            i.fit-icon-mid.fit-icon-charge.no-text-shadow
 
-        .li-control.ui-grid-d.center
+        .li-control.ui-grid-d.center.text-shadow
           .ui-block-a
             a.ui-btn.ui-btn-no-border(href="#", ng-click="addAfter(train)")
               i.fit-icon-large.fit-icon-add
@@ -55,7 +55,7 @@
 
 
       li(ng-if="!select_trains.length")
-        .li-control.ui-grid-d.center
+        .li-control.ui-grid-d.center.text-shadow
           .ui-block-a
             a.ui-btn.ui-btn-no-border(href="#select_muscle_page", data-transition="slideup")
               i.fit-icon-large.fit-icon-add
