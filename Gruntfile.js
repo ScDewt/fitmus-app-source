@@ -48,14 +48,21 @@ module.exports = function (grunt) {
                     "dist/www/index.html": ["app/views/layout.jade"]
                 }
             }
+        },
+        cssUrlEmbed: {
+            encodeDirectly: {
+                files: {
+                    'public/fonts/fit-icon/styles-inline.css': ['public/fonts/fit-icon/styles.css']
+                }
+            }
         }
     });
 
-
+    grunt.loadNpmTasks('grunt-css-url-embed');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-jade');
 
     // Default task(s).
-    grunt.registerTask('default', ['copy','jade']);
+    grunt.registerTask('default', ['cssUrlEmbed'/*,'copy','jade'*/]);
 
 };

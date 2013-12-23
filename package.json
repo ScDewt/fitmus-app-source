@@ -12,6 +12,8 @@
     "http-proxy": "~0.10.x",
     "grunt": "~0.4.2",
     "grunt-contrib-copy": "0.4.0",
-    "grunt-contrib-jade": "0.8.0"
+    "grunt-contrib-jade": "0.8.0",
+    "grunt-base64": "~0.1.0",
+    "grunt-css-url-embed": "~0.1.2"
   }
 }
