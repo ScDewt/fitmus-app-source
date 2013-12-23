@@ -63,6 +63,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jade');
 
     // Default task(s).
-    grunt.registerTask('default', ['cssUrlEmbed'/*,'copy','jade'*/]);
+    grunt.registerTask('default', ['cssUrlEmbed','copy','jade']);
 
 };

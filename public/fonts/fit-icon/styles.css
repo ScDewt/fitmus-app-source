@@ -6,6 +6,7 @@
 	     url('fit-icon.ttf')  format('truetype'),
 	     url('fit-icon.svg#fit-icon') format('svg');
 }*/
+
 @font-face {
 	font-family: 'fit-icon';
 	src: url('fit-icon.eot') format('eot'),
