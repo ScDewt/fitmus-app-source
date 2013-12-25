@@ -23,6 +23,7 @@ app.directive('ngApproach', function ($compile, $rootScope, $timeout) {
     },true);
 
     function setData(scope, path, value, isSilent) {
+        console.log("setData",path, value, isSilent);
         var key,
             pathEls = path.split("."),
             element = scope;
@@ -114,8 +115,9 @@ app.directive('ngApproach', function ($compile, $rootScope, $timeout) {
                     tickTimer = function () {
                         timeId = $timeout(function () {
                             value = scope.$eval(key) || 0;
-                            if (value < 59 * 60 + 59) {
+                            if (value < (59 * 60 + 59)) {
                                 setData(scope, key, value + 1);
+                                console.log("timer tick",value);
                                 tickTimer();
                             } else {
                                 stopTimer();
