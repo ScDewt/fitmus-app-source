@@ -13,14 +13,12 @@ function MenuCtrl($scope, connect, navigation, $rootScope, $sce) {
             textonly: false,
             html: ""
         });
+        var page = $.mobile.activePage.attr('id');
+        $.mobile.changePage("#empty", {transition: "slideup"});
         connect.sync(function () {
-            var page = $.mobile.activePage.attr('id');
-            $.mobile.changePage("#empty", {transition: "slideup"});
-            setTimeout(function(){
-                $.mobile.changePage("#main_page", {transition: "slideup"});
-                $.mobile.loading("hide");
-            },100);
-        })
+            $.mobile.changePage("#"+page, {transition: "slideup"});
+            $.mobile.loading("hide");
+        });
     };
 
     $scope.exit = function () {
