@@ -39,8 +39,10 @@ app.factory('connect',function ($rootScope){
     localStorage["console-log"] = "";
     console.log = (function(oldFunc){
         return function(){
-            var args = [].slice.call(arguments);
-            localStorage["console-log"] += "|" + JSON.stringify(args,censor(args));
+            var args = [].slice.call(arguments),
+                strArgs = JSON.stringify(args,censor(args));
+            localStorage["console-log"] += "|" + strArgs;
+            //$.ajax("http://192.168.1.95:3000/log?" +strArgs);
             oldFunc.apply(this, args);
         };
     })(console.log);
@@ -52,6 +54,9 @@ app.factory('connect',function ($rootScope){
     function loadFromLocalStorage(){
         if(window.localStorage["fitmus-app-user-data"]){
             userData = JSON.parse(window.localStorage["fitmus-app-user-data"]);
+            if(!userData.settings){
+                userData.settings = defaultSettings;
+            }
         }
     }
 
@@ -63,6 +68,12 @@ app.factory('connect',function ($rootScope){
         if(window.localStorage["fitmus-app-exercises"]){
             exerciseSources = JSON.parse(window.localStorage["fitmus-app-exercises"]);
         }
+    }
+
+    function showInfo(messages){
+        _.each(messages,function(message){
+            alert(message);
+        });
     }
 
     function getJSON(url,callback){
@@ -78,6 +89,7 @@ app.factory('connect',function ($rootScope){
             user_id: userData.user.id,
             token: userData.user.token
         }).done(function(data){
+            showInfo(data.info);
             callback(data.error,data.data);
         }).fail(function(jqXHR, textStatus, errorThrown){
             callback({

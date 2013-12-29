@@ -3,9 +3,9 @@
     h2
       span.fit-logo F
       | Добавить упражнение
-    a.ui-btn.ui-btn-no-border.ui-btn-left.less-left(href="#main_page", data-transition="slideup")
+    a.ui-btn.ui-btn-no-border.ui-btn-left.less-left(href="#main_page")
       i.fit-icon-large.fit-icon-left-arrow
   div(data-role='content')
     ul.hide-link(data-role="listview")
       li(ng-repeat="(id, musclegroup) in musclegroups")
-        a(href="#select_exercise_page?{{id}}", data-transition="slideup") {{musclegroup}}
+        a(href="#select_exercise_page?{{id}}") {{musclegroup}}

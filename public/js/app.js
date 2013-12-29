@@ -27,10 +27,12 @@
         textonly: false,
         html: ""
     });
+    $.mobile.defaultPageTransition = 'none';
 
     global.app = angular.module('fitApp',[]);
     app.run(function($rootScope,connect){
         var run = _.once(function(){
+            $.mobile.navigate.history.clear();
             if(connect.isLogin()){
                 connect.getAll(function(err,data){
                     if(err){
@@ -41,13 +43,22 @@
                     $.mobile.loader("hide");
                     console.log(data);
                     setTimeout(function(){
-                        $.mobile.changePage("#main_page",{transition:"slideup"});
+                        $.mobile.changePage("#main_page",{transition:"none"});
                     },0)
                 });
             }else{
                 $.mobile.loader("hide");
                 $.mobile.changePage("#auth_page");
             }
+            document.addEventListener("backbutton", function(e){
+                if($.mobile.navigate.history.activeIndex == 0){
+                    e.preventDefault();
+                    navigator.app.exitApp();
+                }else{
+                    navigator.app.backHistory();
+                }
+            }, false);
+
         });
         document.addEventListener("deviceready", run, false);
         setTimeout(run, 3000);

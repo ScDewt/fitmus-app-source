@@ -3,7 +3,7 @@
     h2
       span.fit-logo F
       | Добавить упражнение
-    a.ui-btn.ui-btn-no-border.ui-btn-left.less-left(href="#select_muscle_page", data-transition="slideup")
+    a.ui-btn.ui-btn-no-border.ui-btn-left.less-left(href="#select_muscle_page")
       i.fit-icon-large.fit-icon-left-arrow
 
   div(data-role='content')
@@ -13,5 +13,5 @@
         .li-content
           h3.blue {{exercise.name}}
           p {{musclegroups[muscle_id]}}
-        a.ui-btn.ui-btn-no-border.ui-btn-bottom-right.no-text-shadow(href="#main_page?{{exercise.id}}|{{muscle_id}}", data-transition="slideup")
+        a.ui-btn.ui-btn-no-border.ui-btn-bottom-right.no-text-shadow(href="#main_page?{{exercise.id}}|{{muscle_id}}")
           i.fit-icon-big.fit-icon-add

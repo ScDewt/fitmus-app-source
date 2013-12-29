@@ -14,11 +14,17 @@ function MenuCtrl($scope, connect, navigation, $rootScope, $sce) {
             html: ""
         });
         var page = $.mobile.activePage.attr('id');
-        $.mobile.changePage("#empty", {transition: "slideup"});
-        connect.sync(function () {
-            $.mobile.changePage("#"+page, {transition: "slideup"});
-            $.mobile.loading("hide");
-        });
+        setTimeout(function(){
+            connect.sync(function () {
+                setTimeout(function(){
+                    navigation.refresh();
+                    $.mobile.loading("hide");
+                    setTimeout(function(){
+                        $("#"+page).jqmData( "panel", null );
+                    },600);
+                },10);
+            });
+        },10);
     };
 
     $scope.exit = function () {
@@ -38,7 +44,7 @@ function MenuCtrl($scope, connect, navigation, $rootScope, $sce) {
 
 
     jQuery(".main_menu-link").on("click", function () {
-        jQuery("#main_menu").panel("open");
+        jQuery("#main_menu").panel("toggle");
         return false;
     });
 }

@@ -32,6 +32,12 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 
+app.all('/log', function(req, res){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.send("answer!!!");
+});
+
 server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
