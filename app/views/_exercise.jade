@@ -25,7 +25,7 @@
           a.ui-btn.ui-btn-no-border.ui-btn-bottom-right(href="#", ng-next-mode)
             i.fit-icon-mid.fit-icon-charge.no-text-shadow
 
-      li(ng-repeat="(index,approach) in select_train.result| orderIntKey:-1")
+      li.no-text-shadow(ng-repeat="(index,approach) in select_train.result| orderIntKey:-1")
         div(ng-approach="approach", ng-approach-old="select_train_old.result[index+1]")
           table
             tr
