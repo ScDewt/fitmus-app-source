@@ -13,3 +13,8 @@ build
 ```
 grunt default
 ```
+
+start server 
+```
+node app.js
+```
